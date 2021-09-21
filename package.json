@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start",
+  "name": "remote_control_back_end",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -14,7 +14,7 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "Andrii Bespalyi",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^13.2.1"

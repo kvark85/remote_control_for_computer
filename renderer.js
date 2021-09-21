@@ -13,7 +13,9 @@ const applyButton = document.getElementById('applyButton');
 applyButton.addEventListener('click', () => {
     localStorage.setItem("port", portInput.value);
     setInfoBlock(portInput.value);
-    defineServerPort(portInput.value);
+    defineServerPort(portInput.value, () => {
+        alert('Configuration saved.')
+    });
 });
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -28,6 +30,6 @@ const setInfoBlock = (inputValue) => {
     document.getElementById("info").innerHTML = infoText;
 };
 
-const defineServerPort = (port) => {
-    main.definePort(port === '' ? main.DEFAULT_PORT : port)
+const defineServerPort = (port, handler) => {
+    main.definePort(port === '' ? main.DEFAULT_PORT : port, handler)
 };
