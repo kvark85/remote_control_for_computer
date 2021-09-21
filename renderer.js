@@ -4,3 +4,30 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
+const remote = require('electron').remote;
+const main = remote.require('./main.js');
+
+const portInput = document.getElementById('portInput');
+const applyButton = document.getElementById('applyButton');
+
+applyButton.addEventListener('click', () => {
+    localStorage.setItem("port", portInput.value);
+    setInfoBlock(portInput.value);
+    defineServerPort(portInput.value);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    portInput.value = localStorage.getItem("port");
+    setInfoBlock(portInput.value);
+    defineServerPort(portInput.value);
+});
+
+const setInfoBlock = (inputValue) => {
+    let infoText = inputValue === '' ? `(default port ${main.DEFAULT_PORT})` : '';
+
+    document.getElementById("info").innerHTML = infoText;
+};
+
+const defineServerPort = (port) => {
+    main.definePort(port === '' ? main.DEFAULT_PORT : port)
+};

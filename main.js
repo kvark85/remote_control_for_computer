@@ -5,6 +5,9 @@ const express = require('express');
 const robot = require("robotjs");
 const expressApp = express();
 
+const DEFAULT_PORT = 3034;
+let expressServer;
+
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -12,7 +15,9 @@ function createWindow () {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: false
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true
     }
   })
 
@@ -35,15 +40,9 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 
-
-
-
-////////////////////////////////////////////////////////////////
-  const PORT = 3034;
-
+  // Express configuration START
   expressApp.use(express.static(`${__dirname}/public`));
-  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-  console.log(express.static(`${__dirname}/public`));
+  console.log('Path to static files: ', express.static(`${__dirname}/public`));
 
   expressApp.get('/:control/:command/', function ({ params: { control, command } }, res) {
     robot.keyTap(command);
@@ -57,9 +56,7 @@ app.whenReady().then(() => {
     });
   });
 
-  expressApp.listen(PORT, function () {
-    console.log(`Example app listening on port ${PORT}!`);
-  });
+  // Express configuration END
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -71,3 +68,29 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+const startServer = (newPort) => {
+  expressServer = expressApp.listen(newPort, () => {
+    console.log(`New server created, listening on port ${newPort}!`);
+});
+}
+
+const definePort = (port) => {
+  const newPort = (port !== undefined && port !== '') ? port : DEFAULT_PORT;
+
+  console.log(`Define port. Port will be = ${newPort}`);
+
+  if(expressServer) {
+    console.log('Server exist (already have been created)');
+    expressServer.close && expressServer.close(() => {
+      console.log('Previous server was successfully closed');
+      startServer(newPort);
+    });
+    return;
+  }
+  console.log('There is no worked server');
+  startServer(newPort);
+}
+
+exports.definePort = definePort;
+exports.DEFAULT_PORT = DEFAULT_PORT;

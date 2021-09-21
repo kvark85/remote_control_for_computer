@@ -101,13 +101,12 @@
     }
 
     $jsButtons.on(STARTEVENTTYPE, (event) => {
-      debugger;
         event.preventDefault();
         const $result = $('#result');
         const targetHref = $(event.target).data('href');
         const targetParentHref = $(event.target).parent().data('href');
         isButPressed = true;
-        currentComand = `http://192.168.1.2:3034/${targetHref || targetParentHref}`;
+        currentComand = `${window.location.href}${targetHref || targetParentHref}`;
 
         $.ajax({
             cache: false,
@@ -125,6 +124,5 @@
         event.preventDefault();
         isButPressed = false;
     });
-
 </script>
 </html>

@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <title>Remote control configurator</title>
   </head>
   <body>
-    <h1>Hello World!!</h1>
-    <label for="port">Port</label>
-    <input id="port" type="number" maxlength="5">
-
-    <button>Apply</button>
-    <hr/>
-    <div>We are using Node.js <span id="node-version"></span>.</div>
-    <div>Chromium <span. id="chrome-version"></span.></div>
-    <div>Electron <span id="electron-version"></span>.</div>
+    <h1>Remote control configuration</h1>
+    <label for="portInput">Port</label>
+    <input id="portInput" type="number" maxlength="5" placeholder="port">
+    <button id="applyButton">Apply</button>
+    <div id="info"></div>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
   </body>
