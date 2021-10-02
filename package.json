@@ -18,7 +18,7 @@
   "author": "Andrii Bespalyi",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^15.0.0"
+    "electron": "^15.1.0"
   },
   "dependencies": {
     "express": "^4.17.1",
