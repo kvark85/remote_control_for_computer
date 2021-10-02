@@ -3,3 +3,6 @@ node_modules
 
 # Integrated Development Environments
 .idea
+
+# Built application
+Remote control-win32-x64

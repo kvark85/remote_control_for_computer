@@ -20,16 +20,12 @@ function startServer(port, handler) {
 function serverConfigureAndStart(assetsPath, port, handler) {
   expressApp.use(express.static(assetsPath));
 
-  expressApp.get('/:control/:command/', function ({params: {control, command}}, res) {
+  expressApp.get('/:command/', function ({params: {control, command}}, res) {
     robot.keyTap(command);
 
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.json({
-      control: `This is ${control}`,
-      command: `${command}`,
-      answer: 'ok',
-    });
+    res.json({ answer: 'ok' });
   });
 
   startServer(port, handler);

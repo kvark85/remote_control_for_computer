@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Control</title>
-    <link rel="stylesheet" href="/css/semantic.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/modernizr-custom.js"></script>
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/modernizr-custom.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <h1>Control</h1>
@@ -14,19 +15,19 @@
 <div class="ui grid">
     <div class="three column row">
         <div class="column">
-            <button class="ui labeled icon button gm-full-width js-button" data-href="control/audio_prev">
+            <button class="ui labeled icon button gm-full-width js-button" data-href="audio_prev">
                 <i class="fast backward icon"></i> Prev
             </button>
         </div>
 
         <div class="column">
-            <button class="ui labeled icon button gm-full-width js-button" data-href="control/audio_pause">
+            <button class="ui labeled icon button gm-full-width js-button" data-href="audio_pause">
                 <i class="pause icon"></i> Pause
             </button>
         </div>
 
         <div class="column">
-            <button class="ui right labeled icon button gm-full-width js-button" data-href="control/audio_next">
+            <button class="ui right labeled icon button gm-full-width js-button" data-href="audio_next">
                 <i class="fast forward icon"></i> Next
             </button>
         </div>
@@ -34,13 +35,13 @@
 
     <div class="two column row">
         <div class="column">
-            <button class="ui labeled icon button gm-full-width js-button" data-href="control/left">
+            <button class="ui labeled icon button gm-full-width js-button" data-href="left">
                 <i class="arrow left icon"></i> Left
             </button>
         </div>
 
         <div class="column">
-            <button class="ui right labeled icon button gm-full-width js-button" data-href="control/right">
+            <button class="ui right labeled icon button gm-full-width js-button" data-href="right">
                 <i class="arrow right icon"></i> Right
             </button>
         </div>
@@ -48,19 +49,19 @@
 
     <div class="three column row">
         <div class="column">
-            <button class="ui labeled icon button gm-full-width js-button" data-href="volume/audio_vol_down">
+            <button class="ui labeled icon button gm-full-width js-button" data-href="audio_vol_down">
                 <i class="volume down icon"></i> Vol-
             </button>
         </div>
 
         <div class="column">
-            <button class="ui labeled icon button gm-full-width js-button" data-href="volume/audio_mute">
+            <button class="ui labeled icon button gm-full-width js-button" data-href="audio_mute">
                 <i class="volume off icon"></i> Mute
             </button>
         </div>
 
         <div class="column">
-            <button class="ui right labeled icon button gm-full-width js-button" data-href="volume/audio_vol_up">
+            <button class="ui right labeled icon button gm-full-width js-button" data-href="audio_vol_up">
                 <i class="volume up icon"></i> Vol+
             </button>
         </div>
@@ -68,7 +69,7 @@
 
     <div class="one column row">
         <div class="column">
-            <button class="ui button gm-full-width js-button" data-href="control/space">
+            <button class="ui button gm-full-width js-button" data-href="space">
                 Space
             </button>
         </div>
@@ -80,7 +81,6 @@
 <div id="result"></div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     const STARTEVENTTYPE = Modernizr.touchevents === true ? 'touchstart' : 'mousedown';
     const ENDEVENTTYPE = Modernizr.touchevents === true ? 'touchend' : 'mouseup';
@@ -111,8 +111,8 @@
         $.ajax({
             cache: false,
             url: currentComand,
-        }).done((data) => {
-            $result.text(JSON.stringify(data));
+        }).done(() => {
+            $result.text('Command sent successfully');
             helper();
         }).fail(() => {
             isButPressed = false;
