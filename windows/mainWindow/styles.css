@@ -1,0 +1,68 @@
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: rgb(33, 37, 41);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    -webkit-app-region: drag;
+    align-items: center;
+}
+
+.header-icon{
+    width: 15px;
+    height: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.header-text {
+    flex: 1 1 auto;
+}
+
+.header-roll-up-button {
+    width: 45px;
+    height: 30px;
+    border: none;
+    padding: 0;
+    -webkit-app-region: no-drag;
+    background-color: #ffffff;
+    transition: background-color 0.5s ease;
+    position: relative;
+}
+
+.header-roll-up-button:before {
+    content: "";
+    position: absolute;
+    margin-left: -5px;
+    top: 50%;
+    left: 50%;
+    bottom: 0;
+    width: 10px;
+    height: 1px;
+    background-color: black;
+
+}
+
+.header-roll-up-button:hover {
+    background-color: #e5e5e5;
+}
+
+.content {
+    text-align: center;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 48px;
+}

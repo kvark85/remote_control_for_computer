@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Remote control configurator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="header">
+      <img class="header-icon" src="../../public/images/menu_image.png"/>
+      <div class="header-text">Remote control</div>
+      <button class="header-roll-up-button" id="roll-up-button"></button>
+    </div>
+    <div class="content">
+      <h3 class="content-title">Remote control configuration</h3>
+      <div>
+        <label for="portInput">Port</label>
+        <input id="portInput" type="number" max="99999" placeholder="port">
+        <button id="applyButton">Apply</button>
+      </div>
+      <div id="info">
+        (default port <span id="default-port"></span>)
+      </div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
